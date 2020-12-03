@@ -1,6 +1,7 @@
 var pg = require ('pg');
+var config = require('./app.js/config/env.json');
 
-var pgConString = "postgres://kanibal:heroe@localhost/keeperDB"
+var pgConString = "postgres://" + config.db_user + ":" + config.db_passwd + "@" + config.db_host + ":" + config.db_port + "/" + config.db_name;
 
 pg.connect(pgConString, function(err, client) {
   if(err) {
