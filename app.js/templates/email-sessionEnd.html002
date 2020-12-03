@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Reporte KEEPER</title>
+</head>
+<body>
+	<h1>Datod se Sesion Finalizada</h1>
+	<h2>
+	<li>Usuario:        <b>{{ data.appusername }}</b></li>
+	<li>Vehiculo:       <b>{{ data.vehicleidenti }}</b></li>
+	<li>Ruta:           <b>{{ data.routename }}</b></li>
+	<li>Sesion:         <b>{{ data.sessionid }}</b></li>
+	<li>Id Dispositivo: <b>{{ data.imei }}</b></li>
+	<li>Fecha:          <b>{{ data.created_at }}</b></li>
+	</h2>
+</body>
+</html>

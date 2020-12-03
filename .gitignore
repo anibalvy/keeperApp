@@ -1,0 +1,4 @@
+app.js/config/env.json
+app.js/node_modules/*.*
+app.js/node_modules/*
+app.js/node_modules-old

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Keeper{% endblock %}</title>
+
+  {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+
+    <title>Fixed Top Navbar Example for Bootstrap</title> 
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/navbar-fixed-top.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css" />
+
+  {% endblock %}
+</head>
+<body>
+  {% block content %}
+      <div class="navbar transparent navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/track-keeper-White-small.png" alt="logoekeeper" width=auto; height=auto></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {# <li><a href="#">Inicio</a></li>
+            <li><a href="#about">Acerca de</a></li> #}
+            {% if user %}
+            <li><a href="sessionSearch">Sesiones</a></li>
+            {% endif %}
+            {# <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+	              <ul class="dropdown-menu">
+	                <li><a href="#">Action</a></li>
+	                <li><a href="#">Another action</a></li>
+	                <li><a href="#">Something else here</a></li>
+	                <li class="divider"></li>
+	                <li class="dropdown-header">Nav header</li>
+	                <li><a href="#">Separated link</a></li>
+	                <li><a href="#">One more separated link</a></li>
+	              </ul>
+            </li> #}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {# <li><a href="../navbar/">Default</a></li> #}
+            {% if user %}
+            <li><a href="/editCurrentUser"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+            {% endif %}
+            {# <li class="active"><a href="./">Contacto</a></li> #}
+            <li><a href="/contact"><span class="glyphicon glyphicon-send"></span> Contacto</a></li>
+            {% if user %}
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+            {% else %}
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+            {% endif %}
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  {% endblock %}
+</body>
+<footer>
+    <p align="center"><small>&copy;  Copyright Tedas S.A., Derechos reservados, <a href="/legal"> con la excepción</a>.<small></p>
+  </footer>
+</html>

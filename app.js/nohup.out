@@ -1,0 +1,88 @@
+[33mwarn[39m:    --minUptime not set. Defaulting to: 1000ms
+[33mwarn[39m:    --spinSleepTime not set. Your script will exit if it does not stay up for at least 1000ms
+connect.multipart() will be removed in connect 3.0
+visit https://github.com/senchalabs/connect/wiki/Connect-3.0 for alternatives
+connect.limit() will be removed in connect 3.0
+[90mGET /login [36m304 [90m83ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m32ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m31ms[0m
+[90mGET /css/signin.css [36m304 [90m33ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m32ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET /ico/favicon.ico [36m304 [90m8ms[0m
+[90mGET / [36m304 [90m87ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m3ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m2ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m2ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m2ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m19ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m3ms[0m
+[90mGET /login [36m304 [90m13ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /css/signin.css [36m304 [90m3ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m2ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m4ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m1ms[0m
+[90mGET /login [32m200 [90m121ms - 3.25kb[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m25ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m36ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m30ms[0m
+[90mGET /css/signin.css [32m200 [90m57ms - 794b[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m10ms[0m
+[90mGET /ico/favicon.ico [32m200 [90m111ms - 97.34kb[0m
+[90mGET /login [36m304 [90m11ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m4ms[0m
+[90mGET /css/signin.css [36m304 [90m5ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m5ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET /ico/favicon.ico [36m304 [90m5ms[0m
+[90mGET /login [36m304 [90m9ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m16ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m10ms[0m
+[90mGET /css/signin.css [36m304 [90m5ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m6ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET /ico/favicon.ico [36m304 [90m5ms[0m
+[90mGET / [32m200 [90m24ms - 3.46kb[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m6ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m4ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m3ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m22ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m2ms[0m
+[90mGET /login [36m304 [90m10ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m1ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m3ms[0m
+[90mGET /css/signin.css [36m304 [90m3ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m3ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET / [36m304 [90m14ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m3ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m3ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m3ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m6ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m1ms[0m
+[90mGET / [36m304 [90m28ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m11ms[0m
+[90mGET /js/bootstrap.min.js [36m304 [90m8ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m6ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m2ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m1ms[0m
+[90mGET /images/logokeeper.png [36m304 [90m2ms[0m
+[90mGET /login [36m304 [90m134ms[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m1ms[0m
+[90mGET /css/signin.css [36m304 [90m2ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m2ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m
+[90mGET /login?username=kanibalv&password=heroe [32m200 [90m10ms - 3.25kb[0m
+[90mGET /css/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /css/navbar-fixed-top.css [36m304 [90m3ms[0m
+[90mGET /css/signin.css [36m304 [90m4ms[0m
+[90mGET /images/track-keeper-White-small.png [36m304 [90m2ms[0m
+[90mGET /fonts/glyphicons-halflings-regular.woff [36m304 [90m2ms[0m

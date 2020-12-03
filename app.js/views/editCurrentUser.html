@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+	<div class="container">
+
+	  <!-- Main component for a primary marketing message or call to action -->
+	  <div class="jumbotron">
+	    <h1><b><span class="glyphicon glyphicon-edit"></span>Editar Datos de Usuario</b></h1>
+	    <p>{{user.username}}, esta es una pagina para editar sus datos de usuario.</p>
+	    
+	  </div>
+
+	</div> <!-- /container -->
+
+	<div class="container theme-showcase" role="main">
+		<!-- Formulario para filtra información desde la tabla de Información de Consolas -->
+        <form class="form-horizontal" role="form" id="FormEditCurrentUser" name="FormEditCurrentUser" action="/editcurrentuserform" onsubmit="return validateForm();"  method="post">
+		  <div class="form-group" hidden>
+		    <label for="inputId" class="col-sm-2 control-label">Id</label>
+		    <div class="col-sm-5">
+		      <input type="text" class="form-control" id="inputUserId" name="inputUserId" placeholder="Nombre" value="{{user.id}}" required >
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputUsername" class="col-sm-2 control-label">Usuario</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="text" class="form-control" id="inputUsername" name="inputUsername" placeholder="Nombre de usuario" value="{{user.username}}" required autofocus>
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="email" class="form-control" id="inputUserEmail" name="inputUserEmail" placeholder="Email" value="{{user.email}}" required>
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">Contraseña</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="password" class="form-control" id="inputUserPassword" name="inputUserPassword" placeholder="Ingrese su Contraseña si desea cambiarla.">
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">Repetir Contraseña</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="password" class="form-control" id="inputUserPasswordRepeat" name="inputUserPasswordRepeat" placeholder="Repita su Contraseña si desea cambiarla.">
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-success" id="btnSave" data-loading-text="Guardando...">Guardar</button>
+		    </div>
+		  </div>
+		</form>
+	</div>
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script>
+		function validateForm()
+		{
+			
+			var illegalChars  = /\W/; // allow letters, numbers, and underscores
+			var usernameValue = document.forms["FormEditCurrentUser"]["inputUsername"].value;
+			var passwordValue = document.forms["FormEditCurrentUser"]["inputUserPassword"].value;
+			var passwordRepeatValue=document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].value;
+
+			
+			
+			if (usernameValue == "") {
+				// usernameValue.style.background = 'lightYellow'; 
+				alert("You didn't enter a username.\n");
+				return false;
+			} else if ((usernameValue.length < 6) || (usernameValue.length > 15)) {
+			    // usernameValue.style.background = 'lightYellow'; 
+			    document.forms["FormEditCurrentUser"]["inputUsername"].style.background = 'lightYellow';
+			    document.forms["FormEditCurrentUser"]["inputUserPassword"].style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].style.background = 'White';
+			    alert("The username is the wrong length.\n");
+			    return false;
+			} else if (illegalChars.test(usernameValue)) {
+			    // usernameValue.style.background = 'lightYellow'; 
+			    document.forms["FormEditCurrentUser"]["inputUsername"].style.background = 'lightYellow';
+			    document.forms["FormEditCurrentUser"]["inputUserPassword"].style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].style.background = 'White';
+			    alert("The username contains illegal characters.\n");
+			    return false;
+			} else {
+			    // usernameValue.style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUsername"].style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUserPassword"].style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].style.background = 'White';
+			};
+			if (passwordValue!=passwordRepeatValue) {
+				document.forms["FormEditCurrentUser"]["inputUserPassword"].style.background = 'lightYellow';
+				document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].style.background = 'lightYellow';
+				alert(" Contraseña no coinciden. \n\n Dejarla en blanco si no se desea cambio.");
+				return false;
+			}else {
+			    // usernameValue.style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUserPassword"].style.background = 'White';
+			    document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].style.background = 'White';
+			};
+			
+		}
+	</script>
+	<script>
+	  $('#btnSave').click(function () {
+	    var btn = $(this)
+	    btn.button('loading')
+	    $.ajax(...).always(function () {
+	      btn.button('reset')
+	    });
+	  });
+	</script>
+{% endblock %}

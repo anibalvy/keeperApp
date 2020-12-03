@@ -1,0 +1,203 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+	<div class="container">
+
+	  <!-- Main component for a primary marketing message or call to action -->
+	  <div class="jumbotron">
+	    <h1><b><span class="glyphicon glyphicon-picture" style="color:#0064C8"></span> Datos de Sesion</b></h1>
+	    <p>{{user.username}}, esta es la vista de los Datos recopilados.</p>
+	    <p>{{ params }}</p>
+
+	    <div id="map_wrapper">
+		    <div id="map_canvas" class="mapping"></div>
+		</div>
+
+	  </div>
+	  <div>
+	  	<p>
+          <a class="btn btn-lg btn-default" href="{{ baseUrl }}" role="button">Ver Todo </a>
+          <a class="btn btn-lg btn-default" href="{{ baseUrl + 1 }}" role="button">Ver Velocidades </a>
+          <a class="btn btn-lg btn-default" href="{{ baseUrl + 2 }}" role="button">Ver Eventos de GPS </a>
+          <a class="btn btn-lg btn-default" href="{{ baseUrl + 3 }}" role="button">Ver Velocidad Maxima Superada </a>
+          <a class="btn btn-lg btn-default" href="{{ baseUrl + 4 }}" role="button">Ver Puntos Recorridos </a>
+      	</p>
+	  </div>
+
+		
+	  
+	{#   {% for values in sessionsReturned  %}
+	  <h2>{{ loop.key }}</h2>
+	  <ul>
+	    {% for i in values %}
+	    <li>{{ i.sessionid }}</li>
+	    {% endfor %}
+	  </ul>
+	{% endfor %} #}
+
+
+{# sessionsDataReturned
+[ { trackid: '00000000000000020140410105657599',
+    sessionid: '00000000000000020140410105614151',
+    typename: 'Velocity',
+    trackdata: 
+     { longitude: '-122.08412500000001',
+       latitude: '37.422005',
+       altitude: '0.0',
+       speed: '0.0',
+       event: 'Vel.' },
+    created_at: '2014-04-10 14:56:57' } ]
+ #}
+
+	</div> <!-- /container -->
+
+	{% if sessionsDataReturned %}
+	<div class="container table-responsive" role="main">
+		
+			<table class="table table-hover">
+			<thead>
+			<tr><th>Track</th><th>Tipo</th><th>Longitud</th><th>Latitud</th><th>Ver en Mapa</th><th>Detalle</th><th>Creación</th></tr>
+			</thead>
+			<tbody>
+			{% for data in sessionsDataReturned %}
+			   {# {% if loop.first %}<table class="table table-hover">{% endif %}  #}
+			  <tr><td>{{ data.trackid }}</td><td>{{ data.typename }}</td><td>{{ data.trackdata.longitude }}</td><td>{{ data.trackdata.latitude }}</td>
+			  <td><a href="http://maps.google.com/?q={{ data.trackdata.latitude }},{{ data.trackdata.longitude }}" role="button"  class="btn btn-mini btn-danger"><span class="glyphicon glyphicon-map-marker"></span></a></td>
+			  <td>{{ data.trackdata.event }}</td><td>{{ data.created_at }}</td>
+			  </tr>
+			{#   {% if loop.last %}</table>{% endif %} #}
+			{% endfor %}
+			</tbody>
+			</table>
+		
+	</div>
+	{% endif %}
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/js/jquery-2.1.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/moment.min.js"></script>
+	<script src="/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/js/bootstrap-datetimepicker.es.js"></script>
+	{# <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" /> #}
+  	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css" />
+
+  	 <script type="text/javascript">
+		            $(function () {
+		                $('#datetimepicker1').datetimepicker({
+		                     language: 'es'
+		                });
+		            });
+		            $(function () {
+		                $('#datetimepicker2').datetimepicker({
+		                     language: 'es'
+		                });
+		            });
+	</script>
+
+	<script>
+		function validateForm()
+		{
+			
+			var illegalChars  = /\W/; // allow letters, numbers, and underscores
+			// var usernameValue = document.forms["FormEditCurrentUser"]["inputUsername"].value;
+			// var passwordValue = document.forms["FormEditCurrentUser"]["inputUserPassword"].value;
+			// var passwordRepeatValue=document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].value;
+
+			
+			
+			if ((inputUsername.value == "")  &&  (inputSessionId.value == "") && (inputVehicle.value == "") && (inputIMEI.value == "") && (inputRoute.value == "") && (inputDateInit.value == "") && (inputDateEnd.value == "") ) {
+				// usernameValue.style.background = 'lightYellow'; 
+				alert("Entregue al menos un valor de busqueda.\n");
+				return false;
+			};
+			
+		}
+	</script>
+	
+
+	<script>
+	jQuery(function($) {
+	    // Asynchronously Load the map API 
+	    var script = document.createElement('script');
+	    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+	    document.body.appendChild(script);
+	});
+
+	function initialize() {
+	    var map;
+	    var bounds = new google.maps.LatLngBounds();
+	    var mapOptions = {
+	        mapTypeId: 'roadmap'
+	    };
+	                    
+	    // Display a map on the page
+	    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	    map.setTilt(45);
+	        
+	    // Multiple Markers
+	    // var markers = [
+	    //     ['London Eye, London', 51.503454,-0.119562],
+	    //     ['Palace of Westminster, London', 51.499633,-0.124755]
+	    // ];
+	    var markers = {{ markers|safe }};
+	    
+	                        
+	    // Info Window Content
+	    // var infoWindowContent = [
+	    //     ['<div class="info_content">' +
+	    //     '<h3>London Eye</h3>' +
+	    //     '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>'],
+	    //     ['<div class="info_content">' +
+	    //     '<h3>Palace of Westminster</h3>' +
+	    //     '<p>The Palace of Westminster is the meeting place of the House of Commons and the House of Lords, the two houses of the Parliament of the United Kingdom. Commonly known as the Houses of Parliament after its tenants.</p>' +
+	    //     '</div>']
+	    // ];
+	    var infoWindowContent = {{ infoWindowContent|safe }};
+	        
+	    // Display multiple markers on a map
+	    var infoWindow = new google.maps.InfoWindow(), marker, i;
+	    
+	    // Loop through our array of markers & place each one on the map  
+	    for( i = 0; i < markers.length; i++ ) {
+	        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+	        bounds.extend(position);
+	        marker = new google.maps.Marker({
+	            position: position,
+	            map: map,
+	            title: markers[i][0]
+	        });
+	        
+	        // Allow each marker to have an info window    
+	        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	            return function() {
+	                infoWindow.setContent(infoWindowContent[i][0]);
+	                infoWindow.open(map, marker);
+	            }
+	        })(marker, i));
+
+	        // Automatically center the map fitting all markers on the screen
+	        map.fitBounds(bounds);
+	    }
+
+	    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+	    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+	        this.setZoom(14);
+	        google.maps.event.removeListener(boundsListener);
+	    });
+	    
+	}
+
+	</script>
+{% endblock %}

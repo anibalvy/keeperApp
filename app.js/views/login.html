@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+  <link href="/css/signin.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+    <div class="container">
+
+      <form class="form-signin" role="form" action="/login" method="post">
+        <h2 class="form-signin-heading">Ingresar al sitio</h2>
+        <input type="text"     class="form-control" name="username" placeholder="Usuario"    required autofocus>
+        <input type="password" class="form-control" name="password" placeholder="contraseña" required>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Recordarme
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+      </form>
+
+    </div> <!-- /container -->
+
+{% endblock %}

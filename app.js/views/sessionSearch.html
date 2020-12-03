@@ -1,0 +1,180 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+	<div class="container">
+
+	  <!-- Main component for a primary marketing message or call to action -->
+	  <div class="jumbotron">
+	    <h1><b><span class="glyphicon glyphicon-search" style="color:#0064C8"></span> Buscar Datos de Sesiones</b></h1>
+	    <p>{{user.username}}, esta es una pagina para buscar sesiones guardadas.</p>
+	  <!-- Formulario para filtra información desde la tabla de Información de Consolas -->
+        <form class="form-horizontal" role="form" id="FormSessionSearch" name="FormSessionSearch" action="/sessionsearchform" onsubmit="return validateForm();"  method="post">
+		  <div class="form-group">
+		    <label for="inputUserApp" class="col-sm-2 control-label">Usuario</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="text" class="form-control" id="inputUsername" name="inputUsername" placeholder="Nombre de usuario" autofocus>
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group" >
+		    <label for="inputId" class="col-sm-2 control-label">Id de la Sesión</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="text" class="form-control" id="inputSessionId" name="inputSessionId" placeholder="Identificador de la Sesión"  >
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-info-sign"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputVehicle" class="col-sm-2 control-label">Vehiculo</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="text" class="form-control" id="inputVehicle" name="inputVehicle" placeholder="Numero de Identificacion del vehiculo" >
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-plane"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputIMEI" class="col-sm-2 control-label">IMEI</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="text" class="form-control" id="inputIMEI" name="inputIMEI" placeholder="Numero de Identificacion del dispositivo" >
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputRoute" class="col-sm-2 control-label">Ruta</label>
+		    <div class="col-sm-5 input-group">
+		      <input type="text" class="form-control" id="inputRoute" name="inputRoute" placeholder="Nombre de la Ruta" >
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-road"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputSessionStatus" class="col-sm-2 control-label">Estado</label>
+		    <div class="col-sm-5 input-group ">
+		      {# <input type="text" class="form-control" id="inputSessionStatus" name="inputSessionStatus" placeholder="Estado de la Session" > #}
+		      <select class="form-control" id="inputSessionStatus" name="inputSessionStatus" >
+              <option value="">Cualquiera</option>
+              <option value="3">Terminada</option>
+              <option value="0">No Comenzada</option>
+              <option value="1">Corriendo</option>
+              <option value="2">Cancelada</option>
+              <option value="4">Terminada y totalmente finalizada</option>
+          </select>
+		      <span class="input-group-addon"><span class="glyphicon glyphicon-info-sign"></span>
+              </span>
+		    </div>
+		  </div>
+		  <div class="form-group">
+            	<label for="inputDate1" class="col-sm-2 control-label">Elegir fecha inicial</label>
+                <div class="input-group date col-sm-5" id="datetimepicker1" data-date-format="YYYY-MM-DD hh:mm:ss">
+                    <input type='text' class="form-control"  id="inputDateInit" name="inputDateInit" placeholder="Fecha de la Sesion que desea buscar"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+		  </div>
+		  <div class="form-group">
+            	<label for="inputDate2" class="col-sm-2 control-label">Elegir fecha final</label>
+                <div class="input-group date col-sm-5" id="datetimepicker2" data-date-format="YYYY-MM-DD hh:mm:ss">
+                    <input type='text' class="form-control" id="inputDateEnd" name="inputDateEnd" placeholder="Fecha tope de inicio de la Sesion" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+		  </div>		  
+		  <div class="form-group">
+		    <div class="col-sm-offset-6 col-sm-5 btn-group">
+		      <button type="submit" class="btn btn-success">Buscar <span class="glyphicon glyphicon-search"></span></button>
+		    </div>
+		  </div>
+		</form>  
+	  </div>
+
+		
+	  
+	{#   {% for values in sessionsReturned  %}
+	  <h2>{{ loop.key }}</h2>
+	  <ul>
+	    {% for i in values %}
+	    <li>{{ i.sessionid }}</li>
+	    {% endfor %}
+	  </ul>
+	{% endfor %} #}
+
+
+	</div> <!-- /container -->
+
+	{% if sessionsReturned %}
+	<div class="container table-responsive" role="main">
+		
+			<table class="table table-hover">
+			<thead>
+			<tr><th>Session</th><th>Estado</th><th>Dispositivo</th><th>Usuario</th><th>Vehiculo</th><th> Ruta</th><th>Creación</th></tr>
+			</thead>
+			<tbody>
+			{% for data in sessionsReturned %}
+			   {# {% if loop.first %}<table class="table table-hover">{% endif %}  #}
+			  <tr onclick="javascript:window.location.href='/sessionDataAll/?sessionid={{data.sessionid}}&type=';" >
+			  	<td>{{ data.sessionid }}</td><td>{{ data.sessionstatusname }}</td><td>{{ data.imei }}</td><td>{{ data.appusername }}</td><td>{{ data.vehicleidenti }}</td><td>{{ data.routename }}</td><td>{{ data.created_at }}</td>
+			  </tr>
+
+			{#   {% if loop.last %}</table>{% endif %} #}
+			{% endfor %}
+			</tbody>
+			</table>
+		
+	</div>
+	{% endif %}
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/js/jquery-2.1.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/moment.min.js"></script>
+	<script src="/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/js/bootstrap-datetimepicker.es.js"></script>
+	{# <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" /> #}
+  	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css" />
+
+  	 <script type="text/javascript">
+		            $(function () {
+		                $('#datetimepicker1').datetimepicker({
+		                     language: 'es'
+		                });
+		            });
+		            $(function () {
+		                $('#datetimepicker2').datetimepicker({
+		                     language: 'es'
+		                });
+		            });
+	</script>
+
+	<script>
+		function validateForm()
+		{
+			
+			var illegalChars  = /\W/; // allow letters, numbers, and underscores
+			// var usernameValue = document.forms["FormEditCurrentUser"]["inputUsername"].value;
+			// var passwordValue = document.forms["FormEditCurrentUser"]["inputUserPassword"].value;
+			// var passwordRepeatValue=document.forms["FormEditCurrentUser"]["inputUserPasswordRepeat"].value;
+
+			
+			
+			if ((inputUsername.value == "")  &&  (inputSessionId.value == "") && (inputVehicle.value == "") && (inputIMEI.value == "") && (inputRoute.value == "") && (inputDateInit.value == "") && (inputDateEnd.value == "") ) {
+				// usernameValue.style.background = 'lightYellow'; 
+				alert("Entregue al menos un valor de busqueda.\n");
+				return false;
+			};
+			
+		}
+	</script>
+{% endblock %}

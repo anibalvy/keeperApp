@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+    <div class="container" >
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        
+        <div class="span3" >
+				<h1> Legal
+				</h1>
+				<p class="muted"> Informacion de elementos usados que no pertenecen a derechos Reservados. 
+				</p>
+			</div>
+			<div class="span2" >
+			</div>
+			<div class="span4" >
+				<address>
+				<strong>Iconos</strong><br>
+				iconos pertenecientes a Oxygen Icons<br>
+				bajo <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Common Attribution-ShareAlike 3.0 License </a><br>
+				
+				<address>
+				<strong>Sitio:</strong><br>
+				<a href="http://www.oxygen-icons.org/">http://www.oxygen-icons.org/</a>
+				</address>
+			</div>
+			<p>
+	          <a class="btn btn-lg btn-primary" href="/" role="button"><span class="glyphicon glyphicon-home"></span> Volver al inicio &raquo;</a>
+	        </p>   
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+{% endblock %}

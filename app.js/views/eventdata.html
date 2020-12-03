@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+	<div class="container">
+
+	  <!-- Main component for a primary marketing message or call to action -->
+	  <div class="jumbotron">
+	    <h1><b>Consulta de Datos recopilados</b></h1>
+	    <p>{{user.username}}, esta es una pagina que solamente es mostrada cuando se esta logeado.</p>
+	    
+	  </div>
+
+	</div> <!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+{% endblock %}

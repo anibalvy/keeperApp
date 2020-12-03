@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+  {% parent %}
+
+    <div class="container" align="center">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1><img src="/images/logokeeper.png" alt="logoekeeper" width=70%; height=auto ></h1>
+        {% if !user %}
+        <p>Sitio en cual encontraras la información recolectada por Nuestro Sistema.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="/login" role="button"><span class="glyphicon glyphicon-log-in"></span> Ingresar al sitio </a>
+        </p>
+        {% else %}
+        <p>Hola {{user.username}}, navega en este sitio y encontrarás la información recolectada por Nuestro Sistema.</p>
+        <p>
+          <a class="btn btn-lg btn-success" href="/sessionSearch" role="button">Ver Sesiones <span class="glyphicon glyphicon-forward"></span></a>
+        </p>
+        {% endif %}
+        
+
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+{% endblock %}

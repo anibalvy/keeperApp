@@ -1,0 +1,31 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/kanibal/.nvm/v0.10.1/bin/node',
+1 verbose cli   '/home/kanibal/.nvm/v0.10.1/bin/npm',
+1 verbose cli   'start' ]
+2 info using npm@1.2.15
+3 info using node@v0.10.1
+4 verbose read json /media/DATA/Development/NodeJS/keeper001/app.js/package.json
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info prestart keeper@0.0.1
+7 info start keeper@0.0.1
+8 verbose unsafe-perm in lifecycle true
+9 silly exec sh "-c" "node ./bin/www"
+10 silly sh,-c,node ./bin/www,/media/DATA/Development/NodeJS/keeper001/app.js spawning
+11 info keeper@0.0.1 Failed to exec start script
+12 error keeper@0.0.1 start: `node ./bin/www`
+12 error `sh "-c" "node ./bin/www"` failed with 8
+13 error Failed at the keeper@0.0.1 start script.
+13 error This is most likely a problem with the keeper package,
+13 error not with npm itself.
+13 error Tell the author that this fails on your system:
+13 error     node ./bin/www
+13 error You can get their info via:
+13 error     npm owner ls keeper
+13 error There is likely additional logging output above.
+14 error System Linux 5.7.3-050703-generic
+15 error command "/home/kanibal/.nvm/v0.10.1/bin/node" "/home/kanibal/.nvm/v0.10.1/bin/npm" "start"
+16 error cwd /media/DATA/Development/NodeJS/keeper001/app.js
+17 error node -v v0.10.1
+18 error npm -v 1.2.15
+19 error code ELIFECYCLE
+20 verbose exit [ 1, true ]
